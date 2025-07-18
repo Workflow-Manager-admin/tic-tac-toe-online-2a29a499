@@ -1,0 +1,289 @@
+:root {
+  /* Light Theme Colors */
+  --bg-primary: #fff;
+  --bg-secondary: #f6fafd;
+  --text-primary: #1a2436;
+  --text-secondary: #1976D2;
+  --tic-primary: #1976D2;
+  --tic-secondary: #1565C0;
+  --tic-accent: #FFC107;
+  --tic-board-bg: #f4f6fb;
+  --tic-board-border: #CED6E0;
+  --border-color: #e9ecef;
+  --button-bg: #1976D2;
+  --button-text: #fff;
+  --button-bg-secondary: #1565C0;
+  --button-bg-accent: #FFC107;
+  --square-hover: #e3edfc;
+}
+
+[data-theme="dark"] {
+  /* Accessible dark fallback if user switches theme */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #282c34;
+  --text-primary: #ffffff;
+  --text-secondary: #61dafb;
+  --tic-primary: #90caf9;
+  --tic-secondary: #1565C0;
+  --tic-accent: #FFC107;
+  --tic-board-bg: #222d3b;
+  --tic-board-border: #444;
+  --border-color: #404040;
+  --button-bg: #1565C0;
+  --button-text: #fff;
+  --button-bg-secondary: #12508a;
+  --button-bg-accent: #FFC107;
+  --square-hover: #223660;
+}
+
+body,
+.App {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s, color 0.3s;
+  min-height: 100vh;
+}
+
+.tic-app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.tic-header {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
+  padding: 32px 12px 16px 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+.tic-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin: 10px 0 12px 0;
+  color: var(--tic-primary);
+  letter-spacing: 1px;
+  text-shadow: 0 1px 0 rgba(25, 118, 210, 0.10);
+}
+
+.tic-scoreboard {
+  display: flex;
+  gap: 24px;
+  font-size: 1.22rem;
+  font-weight: 500;
+  justify-content: center;
+  align-items: center;
+  margin: 8px 0 0 0;
+  padding: 0 8px 0 8px;
+}
+.tic-x { color: var(--tic-secondary); font-weight: 600;}
+.tic-o { color: var(--tic-accent); }
+.tic-divider { color: #bdc9de; font-size: 1.18em; margin: 0 10px;}
+.tic-score { margin-left: 2px; min-width: 20px; display: inline-block;}
+
+.tic-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 0 0 0;
+}
+
+.tic-board-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tic-board {
+  display: grid;
+  grid-template-columns: repeat(3, 64px);
+  grid-template-rows: repeat(3, 64px);
+  gap: 5px;
+  background: var(--tic-board-bg);
+  border: 2.5px solid var(--tic-board-border);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(25, 118, 210, 0.05);
+  margin: 0 auto 18px auto;
+  padding: 12px;
+}
+.tic-square {
+  font-size: 2rem;
+  font-weight: 600;
+  font-family: inherit;
+  background: #fff;
+  color: var(--tic-secondary);
+  border: 1.5px solid var(--tic-board-border);
+  cursor: pointer;
+  outline: none;
+  border-radius: 8px;
+  transition: box-shadow 0.12s, background 0.18s, color 0.16s;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 2px rgba(25, 118, 210, 0.04);
+  user-select: none;
+}
+.tic-square:hover, .tic-square:focus {
+  background: var(--square-hover);
+  box-shadow: 0 1px 6px rgba(25, 118, 210, 0.08);
+}
+.tic-square:disabled {
+  background: #f4f6fb;
+  color: #b0b8c5;
+  cursor: default;
+  opacity: 0.80;
+}
+.tic-square.highlight {
+  background: #E3F2FD;
+  border: 2.5px solid var(--tic-accent);
+  color: var(--tic-accent);
+}
+
+.tic-status {
+  font-size: 1.16em;
+  font-weight: 500;
+  hyphens: auto;
+  letter-spacing: 0.04em;
+  margin: 12px 0 18px 0;
+  min-height: 2em;
+  color: var(--tic-primary);
+}
+
+.tic-controls {
+  width: 100%;
+  max-width: 355px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  padding: 12px 0 0 0;
+}
+.tic-mode {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+.tic-btn {
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  outline: none;
+  border-radius: 7px;
+  font-size: 1.04em;
+  font-weight: 600;
+  padding: 8px 17px;
+  margin: 0 2px;
+  cursor: pointer;
+  transition: filter 0.14s, box-shadow 0.18s;
+  box-shadow: 0 1.5px 4px rgba(26, 98, 210, 0.07);
+}
+.tic-btn.active,
+.tic-btn:focus {
+  filter: brightness(1.08);
+  border: 2px solid var(--tic-accent);
+}
+.tic-btn:disabled {
+  opacity: 0.6;
+  filter: grayscale(0.2) brightness(1.03);
+  cursor: default;
+}
+
+.tic-restart-btn {
+  margin-top: 12px;
+  background: var(--button-bg-accent) !important;
+  color: #232323 !important;
+  border: none;
+  font-size: 1.04em;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  box-shadow: 0 0.5px 3px rgba(255,193,7,0.10);
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  background-color: var(--button-bg-secondary);
+  color: var(--button-text);
+  border: none;
+  border-radius: 8px;
+  padding: 9px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.17s;
+  box-shadow: 0 2px 3px rgba(25, 118, 210, 0.06);
+  z-index: 3;
+}
+.theme-toggle:hover {
+  filter: brightness(1.11);
+  opacity: 0.93;
+  box-shadow: 0 3.2px 8px rgba(25, 118, 210, 0.11);
+}
+.theme-toggle:active {
+  transform: translateY(1px);
+}
+
+.tic-footer {
+  padding: 18px 0 13px 0;
+  font-size: 1.01em;
+  color: #a2b8dc;
+  text-align: center;
+  background: none;
+  border: none;
+}
+.tic-footer a,
+.tic-footer a:visited {
+  color: var(--tic-secondary);
+  text-decoration: underline dotted;
+}
+
+@media (max-width: 800px) {
+  .tic-main {
+    padding-top: 18px;
+  }
+  .tic-header {
+    padding-top: 16px;
+    padding-bottom: 7.5px;
+  }
+}
+
+@media (max-width: 540px) {
+  .tic-app-root {
+    font-size: 86%;
+    min-height: 94vh;
+  }
+  .tic-board {
+    grid-template-columns: repeat(3, 46px);
+    grid-template-rows: repeat(3, 46px);
+    padding: 8.5px;
+  }
+  .tic-square, .tic-square:disabled {
+    width: 46px !important;
+    height: 46px !important;
+    font-size: 1.28rem !important;
+  }
+  .tic-scoreboard { gap: 13px; }
+  .tic-title { font-size: 1.28rem; }
+  .tic-controls { max-width: 98vw; }
+}
+
+@media (max-width: 430px) {
+  .tic-header,
+  .tic-main {
+    padding-left: 1vw;
+    padding-right: 1vw;
+  }
+}
